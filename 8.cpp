@@ -5,7 +5,7 @@ int main(){
 
     int n, sum=0,temp,count=0,x=0;
     cin>>n;
-    int arr[n];
+    int arr[100];
     for(int i=0;i<n;i++){
         cin>>arr[i];
         sum+=arr[i];
