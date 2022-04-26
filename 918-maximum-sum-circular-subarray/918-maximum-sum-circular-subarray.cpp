@@ -16,23 +16,19 @@ public:
         
     }
     int maxSubarraySumCircular(vector<int>& nums) {
-      int maxWithoutLoop = calc(nums);
-        
-        if (maxWithoutLoop<0) {
-            return maxWithoutLoop;
+      int n=nums.size();
+        int arrsum=0;
+       int maxn=calc(nums);
+        if(maxn<0){
+            return maxn;
+        }
+        for(int i=0;i<n;i++){
+             arrsum =arrsum+nums[i];
+            nums[i]=0-nums[i];
         }
         
-        int arrSum = 0;
-        for(int i = 0; i<nums.size(); i++) {
-            arrSum += nums[i];
-            nums[i] = 0-nums[i];
-        }
-        
- 
-        
-        int minSum = calc(nums);
-        
-        return max(maxWithoutLoop, arrSum+minSum);
+        int x=calc(nums);
+        return max(maxn, (arrsum+x));
         
     }
 };
