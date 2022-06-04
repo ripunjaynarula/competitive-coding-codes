@@ -4,19 +4,18 @@ public:
         
         int n = nums.size();
         
-        vector<int>subs(n+1, 1);
+        vector<int>LIS(n+1, 1);
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {
                 if (nums[i] > nums[j])
-                    subs[i] = max(subs[i], 1 + subs[j]);
-                // cout<<subs[i]<<endl<<subs[j];
+                    LIS[i] =  max(LIS[i],1 + LIS[j]);
             }
         }
         
         int ans = 0;
         for (int i = 0; i < n; i++) {
-            ans = max(ans, subs[i]);
+            ans = max(ans, LIS[i]);
         }
         
         return ans;
