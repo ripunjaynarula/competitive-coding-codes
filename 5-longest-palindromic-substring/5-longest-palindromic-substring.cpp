@@ -8,11 +8,11 @@ string longestPalindrome(string s) {
     int min_start = 0, max_len = 1;
     
     for (int i = 0; i < s.size();) {
-      if (s.size() - i <= max_len / 2) 
-      {
-          cout<<s.size() - i <<" "<< max_len / 2;
-          // break;
-      }
+      // if (s.size() - i <= max_len / 2) 
+      // {
+      //     cout<<s.size() - i <<" "<< max_len / 2;
+      //     // break;
+      // }
         
       int j = i, k = i;
       while (k < s.size()-1 && s[k+1] == s[k])
