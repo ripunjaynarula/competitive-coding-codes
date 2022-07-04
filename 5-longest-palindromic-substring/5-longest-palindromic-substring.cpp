@@ -9,7 +9,11 @@ string longestPalindrome(string s) {
     
     for (int i = 0; i < s.size();) {
       if (s.size() - i <= max_len / 2) 
-          break;
+      {
+          cout<<s.size() - i <<" "<< max_len / 2;
+          // break;
+      }
+        
       int j = i, k = i;
       while (k < s.size()-1 && s[k+1] == s[k])
           ++k; // Skip duplicate characters.
