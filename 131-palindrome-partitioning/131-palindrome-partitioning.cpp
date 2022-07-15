@@ -1,39 +1,31 @@
 class Solution {
 public:
-    void palPart (vector<vector<string>> &ans,vector<string> &temp,string s,int j){
-        if(s.size()==0)
-            return;
-        if(j>s.size()-1){
-        ans.push_back(temp);
-        return;
+    // vector<vector<string>> ans;
+    bool isPalindrome(string s, int start, int end) {
+        while(start<=end) {
+            if(s[start++]!=s[end--]) return false;
         }
-        int m,n,l;
+        return true;
+    }
+    void check(string s, int ind, int n, vector<string> temp, vector<vector<string>> &ans) {
+        if(ind==n) {
+            ans.push_back(temp);
+            return;
+        }
         
-        for(m=s.size()-1;m>=j;m--){
-            l=j;
-            n=m;
-            
-            while(l<n&&s[l]==s[n]){
-                
-                l++;
-                n--;
-                
-            }
-            if(l>=n){
-                
-                temp.push_back(s.substr(j,m-j+1));
-                
-                palPart(ans,temp,s,m+1);
-                
+        for(int i = ind; i<n; i++) {
+            if(isPalindrome(s, ind, i)) {
+                temp.push_back(s.substr(ind, i-ind+1));
+                check(s, i+1, n, temp, ans);
                 temp.pop_back();
             }
         }
     }
-
     vector<vector<string>> partition(string s) {
-    vector<vector<string> >  ans;
-    vector<string> temp;
-    palPart (ans,temp,s,0);
-    return ans;
+        vector<vector<string>> ans;
+        int n = s.size();
+        vector<string> t;
+        check(s, 0, n, t, ans);
+        return ans;
     }
 };
