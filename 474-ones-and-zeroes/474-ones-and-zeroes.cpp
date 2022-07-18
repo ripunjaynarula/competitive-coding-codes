@@ -17,7 +17,9 @@ int findMaxForm(vector<string>& strs, int m, int n) {
     // memo[i][j] = the max number of strings that can be formed with i 0's and j 1's
     for (int i = m; i >= numZeroes; i--) {
 	for (int j = n; j >= numOnes; j--) {
+        
           memo[i][j] = max(memo[i][j], memo[i - numZeroes][j - numOnes] + 1);
+        // cout<<memo[i - numZeroes][j - numOnes] + 1<<endl;
 	}
     }
   }
