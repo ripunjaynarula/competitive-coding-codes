@@ -9,18 +9,16 @@
 
 class Solution {
 public:
-    int guessNumber(int n) {
-        int maxNumber = n, minNumber = 1;
-        while (true) {
-            int meanNumber = (maxNumber - minNumber) / 2 + minNumber;
-            int res = guess(meanNumber);
-            if (res == 0) { 
-                return meanNumber;
-            } else if (res == 1) {
-                minNumber = meanNumber + 1;
-            } else {
-                maxNumber = meanNumber - 1;
-            }
-        }
+  int guessNumber(int n) {
+    int l = 1;
+    int r = n;
+    while(l <= r){
+      int m = l + (r - l) / 2;
+      int ans = guess(m);
+      if(ans == 0) return m;
+      else if(ans == -1) r = m;
+           else l = m + 1;
     }
+    return 0;
+  }
 };
