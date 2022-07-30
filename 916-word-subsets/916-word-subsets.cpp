@@ -1,21 +1,43 @@
 class Solution {
 public:
-    vector<string> wordSubsets(vector<string>& A, vector<string>& B) {
-        string unit = "";
-        for (auto& v : B) {
-            string tmp;
-            sort(v.begin(), v.end());
-            set_union(v.begin(), v.end(), unit.begin(), unit.end(), back_inserter(tmp));
-            swap(unit, tmp);
-        }
-        vector<string> res;
-        for (auto a : A) {
-            string t = a;
-            sort(t.begin(), t.end());
-            if (includes(t.begin(), t.end(), unit.begin(), unit.end())) {
-                res.push_back(a);
+    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
+        
+        vector< string> ans;
+        vector<int > count ( 26,0);
+        
+        for( auto x: words2 ){
+            vector<int > count1(26,0);
+            for( auto y: x){
+                
+                count1[ y-'a']++;
+            }
+            for( int i=0 ;i<26 ;i++){
+                
+                count[i] = max( count [i], count1[i]);
             }
         }
-        return res;
+        
+        for( auto x : words1){
+            
+            bool f=1;
+            vector< int> count1(26,0);
+            for( auto y: x){
+                
+                count1[ y-'a']++;
+            }
+            
+            for( int i=0 ;i< 26 ;i++){
+                
+                if(  count [i] > count1[i]){
+                    f=0;
+                    break;
+                }
+            }
+            
+            if( f==1){
+                ans.push_back( x);
+            }
+        }
+         return ans;
     }
 };
